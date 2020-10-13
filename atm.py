@@ -1,16 +1,14 @@
 class ATM:
     
-        def __init__(self):
+        def __init__(self, card_number, pin_number):
             self.balance = 10000
+            self.card_number = card_number
+            self.pin_number = pin_number
 
-        def show_details(self, card_number, pin_number):
-            try:
-                self.card_number = card_number
-                self.pin_number = pin_number
-                print("Card number: " + self.card_number)
-                print("Balance: " + str(self.balance))
-            except ValueError:
-                print("Invalid Value! Try a number")
+        def show_details(self):
+            print("\nAccount info")
+            print("Card number: " + str(self.card_number))
+            print("Balance: " + str(self.balance))
         
         def withdrawMoney(self, amount):
             try:
@@ -20,7 +18,7 @@ class ATM:
                     self.balance = money_left
                 else: 
                     print("Not enough money")
-                    print("Balance: " + self.balance)
+                    print("Balance: " + str(self.balance))
             except ValueError:
                 print("Wrong Value! Try a number")
         
@@ -29,10 +27,9 @@ class ATM:
 
         def start(self):
             try:
-                card_number = input("Enter card number: ")
                 pin = input("Enter pin: ")
-                if int(pin) == 1111: 
-                    self.show_details(card_number, pin)
+                if int(pin) == int(self.pin_number): 
+                    self.show_details()
                     print("\nWhat do you want to do(enter option number)? \n")
                     print("[1] Withdraw")
                     print("[2] Show balance")
@@ -52,6 +49,7 @@ class ATM:
             except ValueError:
                 print("Wrong Value! Try a number")
 
-# Pin is 1111
-my_atm = ATM()
+
+# Enter any pin and any card number, remember the pin and enter the pin when prompted.
+my_atm = ATM(card_number=922200001111, pin_number=1111)
 my_atm.start()
