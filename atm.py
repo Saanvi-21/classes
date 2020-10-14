@@ -1,9 +1,13 @@
 class ATM:
     
-        def __init__(self, card_number, pin_number):
+        def __init__(self):
             self.balance = 10000
-            self.card_number = card_number
-            self.pin_number = pin_number
+            self.card_number = input("Enter card number: ")
+            try:
+                self.pin_number = int(input("Enter pin number: "))
+            except ValueError:
+                print("Pin should contain only numbers!")
+                exit()
 
         def show_details(self):
             print("\nAccount info")
@@ -27,6 +31,7 @@ class ATM:
 
         def start(self):
             try:
+                print("\nVerification...")
                 pin = input("Enter pin: ")
                 if int(pin) == int(self.pin_number): 
                     self.show_details()
@@ -50,6 +55,5 @@ class ATM:
                 print("Wrong Value! Try a number")
 
 
-# Enter any pin and any card number, remember the pin and enter the pin when prompted.
-my_atm = ATM(card_number=922200001111, pin_number=1111)
+my_atm = ATM()
 my_atm.start()
