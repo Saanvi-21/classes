@@ -4,7 +4,7 @@ from selenium import webdriver
 import requests
 from bs4 import BeautifulSoup
 
-path = r"C:\\Program Files (x86)\\geckodriver.exe"
+path = r"C:\\Program Files (x86)\\geckodriver.exe" # path of driver
 
 
 def get_response(url):
