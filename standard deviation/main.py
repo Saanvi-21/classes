@@ -5,22 +5,30 @@ with open('data.csv', newline='') as f:
     reader = csv.reader(f)
     file_data = list(reader)
 
+data = file_data[0]
 sum = 0
-all_elements = []
 
-for data in file_data:
-    elements = len(data)
-    for i in data:
-        all_elements.append(i)
-        sum += float(i)
 
-mean = sum / elements
+def calcMean(data):
+    length = len(data)
+    total = 0
+    for e in data:
+        total += float(e)
 
-squared_sum = 0
-for element in all_elements:
-    squared_sum = squared_sum + \
-        ((float(mean) - float(element)) * (float(mean) - float(element)))
+    mean = total / length
+    return mean
 
-squared_sum = squared_sum / len(all_elements)
-final_result = math.sqrt(float(squared_sum))
-print(final_result)
+
+squared_list = []
+for i in data:
+    a = int(i) - calcMean(data)
+    a = a**2
+    squared_list.append(a)
+
+for i in squared_list:
+    sum += i
+
+result = sum / (len(data)-1)
+
+std_dev = math.sqrt(result)
+print(f"The standard deviation is {std_dev}")
